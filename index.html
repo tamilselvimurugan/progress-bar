@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale-1.0">
+   <title>Document</title>
+  <style>
+     body{
+         text-align:center;
+ }
+		   #progress{
+		         margin:20px auto;
+				 width:80%;
+				 height:40px;
+				 background-color: #ddd;
+				 position:relative;
+			 }
+		   #bar{
+			   background-color:blue;
+			   width:10px;
+			   height:40px;
+			   position:absolute;
+		}
+  </style>
+ </head>
+<body>
+     
+     <h1>Downloading progress</h1>
+	 <div id="progress">
+	    <div id="bar"></div>
+	 </div>
+	 <p id="loading"></p>
+	 <script>
+	     const progressBar=document.getElementById("bar");
+		 const load=document.getElementById("loading");
+		 let barWidth=0;
+		 const down=()=>{
+		     barWidth++;
+		      progressBar.style.width=`${barWidth}%`;
+		     setTimeout(()=>{
+		    load.innerHTML=(barWidth===100)?`${barWidth}%completed`:`${barWidth}% progress`},500);
+			
+ }
+	     <!-- down() -->
+	setTimeout(()=>{
+	
+	let interval=setInterval(()=>{
+	  if(barWidth===100){
+	     clearInterval(interval)
+	  }
+	  else{
+	     down()
+	  }
+	},100)
+	 
+   },2000)
+   </script>
+</body>
+</html>
